@@ -22,3 +22,9 @@ build/
 *~
 lib/
 
+*.png
+data
+rgb
+Examples/
+Vocabulary/
+Thirdparty/

@@ -1,0 +1,4 @@
+[submodule "Thirdparty/opencv"]
+	path = Thirdparty/opencv
+	url = https://github.com/Multi-V-VM/opencv
+	branch = 2.4

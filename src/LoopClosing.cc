@@ -27,6 +27,7 @@
 #include "Optimizer.h"
 
 #include "ORBmatcher.h"
+#include <unistd.h>
 
 #include<mutex>
 #include<thread>
@@ -413,7 +414,7 @@ void LoopClosing::CorrectLoop()
         unique_lock<mutex> lock(mMutexGBA);
         mbStopGBA = true;
 
-        mnFullBAIdx++;
+        // mnFullBAIdx++;
 
         if(mpThreadGBA)
         {
@@ -469,10 +470,7 @@ void LoopClosing::CorrectLoop()
         }
 
         // Correct all MapPoints obsrved by current keyframe and neighbors, so that they align with the other side of the loop
-        for(KeyFrameAndPose::iterator mit=CorrectedSim3.begin(), mend=CorrectedSim3.end(); mit!=mend; mit++)
-        {
-            KeyFrame* pKFi = mit->first;
-            g2o::Sim3 g2oCorrectedSiw = mit->second;
+        for (const auto& [pKFi, g2oCorrectedSiw] : CorrectedSim3) {
             g2o::Sim3 g2oCorrectedSwi = g2oCorrectedSiw.inverse();
 
             g2o::Sim3 g2oSiw =NonCorrectedSim3[pKFi];
@@ -588,11 +586,7 @@ void LoopClosing::SearchAndFuse(const KeyFrameAndPose &CorrectedPosesMap)
 {
     ORBmatcher matcher(0.8);
 
-    for(KeyFrameAndPose::const_iterator mit=CorrectedPosesMap.begin(), mend=CorrectedPosesMap.end(); mit!=mend;mit++)
-    {
-        KeyFrame* pKF = mit->first;
-
-        g2o::Sim3 g2oScw = mit->second;
+    for (const auto& [pKF, g2oScw] : CorrectedPosesMap) {
         cv::Mat cvScw = Converter::toCvMat(g2oScw);
 
         vector<MapPoint*> vpReplacePoints(mvpLoopMapPoints.size(),static_cast<MapPoint*>(NULL));
