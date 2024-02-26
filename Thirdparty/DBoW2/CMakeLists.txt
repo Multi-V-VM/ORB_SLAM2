@@ -24,7 +24,7 @@ set(SRCS_DUTILS
 
 find_package(OpenCV QUIET)
 
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 add_library(DBoW2 ${SRCS_DBOW2} ${SRCS_DUTILS})

@@ -11,8 +11,9 @@ MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
-# find_package(OpenCV REQUIRED)
 add_subdirectory(${PROJECT_SOURCE_DIR}/Thirdparty/opencv/)
+set(OpenCV_DIR ${PROJECT_BINARY_DIR}/)
+find_package(OpenCV REQUIRED)
 find_package(Eigen3 3.1.0 REQUIRED)
 # find_package(Pangolin REQUIRED)
 
@@ -53,8 +54,8 @@ target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS}
 ${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
-${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.a
-${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.a
+DBoW2
+g2o
 )
 
 # Build examples
