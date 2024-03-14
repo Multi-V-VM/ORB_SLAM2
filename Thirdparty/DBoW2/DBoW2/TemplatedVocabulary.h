@@ -462,7 +462,7 @@ TemplatedVocabulary<TDescriptor,F>::TemplatedVocabulary
 template<class TDescriptor, class F>
 void TemplatedVocabulary<TDescriptor,F>::createScoringObject()
 {
-  delete m_scoring_object;
+  // delete m_scoring_object;
   m_scoring_object = NULL;
   
   switch(m_scoring)
@@ -1401,7 +1401,7 @@ bool TemplatedVocabulary<TDescriptor,F>::loadFromTextFile(const std::string &fil
             ssnode >> sElement;
             ssd << sElement << " ";
 	}
-        F::fromString(m_nodes[nid].descriptor, ssd.str());
+        // F::fromString(m_nodes[nid].descriptor, ssd.str());
 
         ssnode >> m_nodes[nid].weight;
 

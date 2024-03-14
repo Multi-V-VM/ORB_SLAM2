@@ -97,6 +97,7 @@ int main(int argc, char **argv)
         double ttrack= std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count();
 
         vTimesTrack[ni]=ttrack;
+        printf("ttrack: %f\n", ttrack);
 
         // Wait to load the next frame
         double T=0;

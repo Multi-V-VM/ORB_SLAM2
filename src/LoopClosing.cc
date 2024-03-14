@@ -84,7 +84,7 @@ void LoopClosing::Run()
 
         usleep(5000);
     }
-
+    printf("LoopClosing\n");
     SetFinish();
 }
 

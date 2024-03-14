@@ -107,7 +107,7 @@ void LocalMapping::Run()
 
         usleep(3000);
     }
-
+    printf("loopmapping");
     SetFinish();
 }
 

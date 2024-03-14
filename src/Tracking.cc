@@ -223,7 +223,8 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const d
         else
             cvtColor(mImGray,mImGray,CV_BGRA2GRAY);
     }
-
+    cv::resize(mImGray, mImGray, cv::Size(30, 20));
+    cv::resize(imDepth, imDepth, cv::Size(30, 20), 0, 0, cv::INTER_NEAREST);
     if((fabs(mDepthMapFactor-1.0f)>1e-5) || imDepth.type()!=CV_32F)
         imDepth.convertTo(imDepth,CV_32F,mDepthMapFactor);
 
